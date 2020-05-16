@@ -1,14 +1,10 @@
 <template>
-  <v-container fluid>
-    <v-layout row wrap>
-      <v-flex xs12 sm5>
-        <l-map :zoom="zoom" :center="center" style="height: 65vh; width: 97%;margin: 2%;">
-          <l-tile-layer :url="url" :attribution="attribution"/>
-          <l-geo-json :geojson="geojson" :options="options"/>
-        </l-map>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-flex xs12 sm5>
+    <l-map :zoom="zoom" :center="center" style="height: 65vh; width: 97%;margin: 2%;">
+      <l-tile-layer :url="url" :attribution="attribution"/>
+      <l-geo-json :geojson="geojson" :options="options"/>
+    </l-map>
+  </v-flex>
 </template>
 
 <script>

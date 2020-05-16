@@ -4,8 +4,13 @@
           <v-app-bar color="#235380" dark>
             <v-toolbar-title><v-icon x-large>mdi-virus-outline</v-icon> Covid-19 Dashboard</v-toolbar-title>
           </v-app-bar>
-          <number-cards></number-cards>
-          <leaflet-map></leaflet-map>
+          <v-container>
+            <v-layout row wrap>
+              <number-cards></number-cards>
+              <leaflet-map></leaflet-map>
+              <data-table></data-table>
+            </v-layout>
+          </v-container>
     </div>
   </v-app>
 </template>
@@ -13,6 +18,7 @@
 <script>
 import leafletMap from './components/LeafletMap';
 import numberCards from './components/NumberCards';
+import dataTable from './components/DataTable'
 
 export default {
   name: 'App',
@@ -23,7 +29,8 @@ export default {
   },
   components: {
     leafletMap,
-    numberCards
+    numberCards,
+    dataTable
   }
 };
 </script>
