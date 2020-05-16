@@ -2,6 +2,10 @@
   <v-flex xs12 sm7>
     <el-table ref="singleTable" :data="distictWiseData" style="width: 100% !important">
       <el-table-column
+        property="district"
+        label="District">
+      </el-table-column>
+      <el-table-column
         property="confirmed"
         label="Confirmed Cases">
       </el-table-column>

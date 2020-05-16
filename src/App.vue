@@ -4,7 +4,7 @@
           <v-app-bar color="#235380" dark>
             <v-toolbar-title><v-icon x-large>mdi-virus-outline</v-icon> Covid-19 Dashboard</v-toolbar-title>
           </v-app-bar>
-          <v-container>
+          <v-container fluid>
             <v-layout row wrap>
               <number-cards></number-cards>
               <leaflet-map></leaflet-map>
