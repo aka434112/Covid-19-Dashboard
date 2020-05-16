@@ -21,6 +21,9 @@ export default new Vuex.Store({
     },
     UPDATE_DISTRICT_WISE_DATA_V2: (state, newDistictWiseDatav2) => {
       state.distictWiseDatav2 = newDistictWiseDatav2;
+    },
+    UPDATE_SELECTED_STATE: (state, newSelectedState) => {
+      state.selectedState = newSelectedState;
     }
   },
   actions: {
