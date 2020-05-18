@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm5>
-    <l-map :zoom="zoom" :center="center" style="height: 65vh; width: 97%;margin: 2%;">
+    <l-map :zoom="zoom" :center="center" style="height: 60vh; width: 95%;margin-left: 1%;">
       <l-tile-layer :url="url" :attribution="attribution"/>
       <l-geo-json :geojson="geojson" :options="options"/>
     </l-map>
@@ -10,7 +10,8 @@
 <script>
 import { LMap, LTileLayer, LGeoJson } from "vue2-leaflet";
 import 'leaflet/dist/leaflet.css';
-import geoJSON from './GeoJSON'
+import geoJSON from './GeoJSON';
+import { mapMutations } from 'vuex';
 
 const opacityOfSelectedState = 0.5;
 const defaultOpacityOfState = 0.2;
@@ -21,7 +22,7 @@ export default {
     geojson: geoJSON,
     enableTooltip: true,
     center: [23, 82.7],
-    zoom: 4,
+    zoom: 3.5,
     url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
     attribution: "Map data &copy; <a href='http://openstreetmap.org'>OpenStreetMap</a> contributors, <a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>",
     previouslySelectedState: null
@@ -32,16 +33,18 @@ export default {
     LGeoJson
   },
   methods: {
+    ...mapMutations(['UPDATE_SELECTED_STATE']),
     highlightSelectedState (state) {
       const vm = this;
       const styleForSelectedState = {fillOpacity: opacityOfSelectedState};
-      console.log(state.feature.properties.ST_CODE);
       if (!vm.previouslySelectedState) {
+        vm.UPDATE_SELECTED_STATE(state.feature.properties.ST_CODE);
         vm.previouslySelectedState = state;
         state.setStyle(styleForSelectedState);  //highlights selected.
         return;
       }
       vm.previouslySelectedState.setStyle({fillOpacity: defaultOpacityOfState}); //resets layer color
+      vm.UPDATE_SELECTED_STATE(state.feature.properties.ST_CODE);
       state.setStyle(styleForSelectedState);  //highlights selected.
       vm.previouslySelectedState = state;
     }

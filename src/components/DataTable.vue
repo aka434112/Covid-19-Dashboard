@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm7>
-    <el-table ref="singleTable" :data="distictWiseData" style="width: 100% !important">
+    <el-table ref="singleTable" height="60vh" empty-text="Please select a state" :data="districtWiseMetrics" style="width: 100% !important;">
       <el-table-column
         property="district"
         label="District">
@@ -26,89 +26,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data () {
     return {
-      distictWiseData: [
-              {
-                "notes": "",
-                "district": "Ramanagara",
-                "active": 0,
-                "confirmed": 0,
-                "deceased": 0,
-                "recovered": 0,
-                "delta": {
-                  "confirmed": 0,
-                  "deceased": 0,
-                  "recovered": 0
-                }
-              },
-              {
-                "notes": "",
-                "district": "Shivamogga",
-                "active": 12,
-                "confirmed": 12,
-                "deceased": 0,
-                "recovered": 0,
-                "delta": {
-                  "confirmed": 3,
-                  "deceased": 0,
-                  "recovered": 0
-                }
-              },
-              {
-                "notes": "",
-                "district": "Udupi",
-                "active": 6,
-                "confirmed": 9,
-                "deceased": 0,
-                "recovered": 3,
-                "delta": {
-                  "confirmed": 1,
-                  "deceased": 0,
-                  "recovered": 0
-                }
-              },
-              {
-                "notes": "",
-                "district": "Uttara Kannada",
-                "active": 30,
-                "confirmed": 41,
-                "deceased": 0,
-                "recovered": 11,
-                "delta": {
-                  "confirmed": 0,
-                  "deceased": 0,
-                  "recovered": 0
-                }
-              },
-              {
-                "notes": "",
-                "district": "Vijayapura",
-                "active": 13,
-                "confirmed": 53,
-                "deceased": 3,
-                "recovered": 37,
-                "delta": {
-                  "confirmed": 1,
-                  "deceased": 0,
-                  "recovered": 1
-                }
-              },
-              {
-                "notes": "",
-                "district": "Yadgir",
-                "active": 2,
-                "confirmed": 2,
-                "deceased": 0,
-                "recovered": 0,
-                "delta": {
-                  "confirmed": 0,
-                  "deceased": 0,
-                  "recovered": 0
-                }
-              }
-      ]
+      districtWiseMetrics: []
+    }
+  },
+  computed: {
+    ...mapState(['selectedState', 'distictWiseData'])
+  },
+  watch: {
+    selectedState (newSelectedState) {
+      const vm = this;
+      for (let state of vm.distictWiseData) {
+        if (state.statecode === newSelectedState) {
+          vm.districtWiseMetrics = state.districtData;
+          break;
+        }
+      }
     }
   }
 }
