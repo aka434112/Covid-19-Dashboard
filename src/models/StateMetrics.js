@@ -8,6 +8,7 @@ export default class StateMetrics {
     this.deltadeaths = state.deltadeaths;
     this.deltarecovered = state.deltarecovered;
     this.state = state.state;
+    this.statecode = state.statecode;
   }
 
   confirmedCases () {
@@ -40,6 +41,10 @@ export default class StateMetrics {
 
   selectedState () {
     return this.state;
+  }
+
+  stateCode () {
+    return this.statecode;
   }
 
 }

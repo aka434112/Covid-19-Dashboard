@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import covidInfoClient from '../rest/CovidInfoClient'
+import covidInfoClient from '../rest/CovidInfoClient';
+import StateMetrics from '../models/StateMetrics';
 
 Vue.use(Vuex)
 
@@ -24,8 +25,10 @@ export default new Vuex.Store({
   },
   actions: {
     FETCH_STATE_WISE_DATA: async (context) => {
-      const stateWiseData = await covidInfoClient.fetchStateWiseData();
-      context.commit('UPDATE_STATE_WISE_DATA', stateWiseData.data.statewise);
+      let stateWiseData = await covidInfoClient.fetchStateWiseData();
+      stateWiseData = stateWiseData.data.statewise;
+      stateWiseData = stateWiseData.map(state => new StateMetrics(state));
+      context.commit('UPDATE_STATE_WISE_DATA', stateWiseData);
     },
     FETCH_DISTRICT_WISE_DATA: async (context) => {
       const distictWiseData = await covidInfoClient.fetchDistrictWiseData();

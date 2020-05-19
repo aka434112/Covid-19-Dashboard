@@ -17,7 +17,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import StateMetrics from '../models/StateMetrics';
 import CovidNumbersCard from '../models/CovidNumbersCard'
 
   const ACTIVE_CASES_TITLE = 'Active Cases';
@@ -42,7 +41,7 @@ import CovidNumbersCard from '../models/CovidNumbersCard'
       ...mapActions(['FETCH_STATE_WISE_DATA']),
       updateSelectedStateMetrics (state) {
         const vm = this;
-        const stateMetrics = new StateMetrics(state);
+        const stateMetrics = state;
         vm.selectedStateHeader = stateMetrics.selectedState();
         vm.stateMetrics = [];
         vm.stateMetrics.push(new CovidNumbersCard(CONFIRMED_CASES_TITLE, ERROR_ALERT_TYPE, stateMetrics.confirmedCases(), stateMetrics.confirmedCasesDelta()));
@@ -62,7 +61,7 @@ import CovidNumbersCard from '../models/CovidNumbersCard'
             vm.updateSelectedStateMetrics(stateWiseData[0]);
           } else {
             for (let state of vm.stateWiseData) {
-              if (state.statecode === newSelectedState) {
+              if (state.stateCode() === newSelectedState) {
                 vm.updateSelectedStateMetrics(state);
                 break;
               }
