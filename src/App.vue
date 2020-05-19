@@ -6,7 +6,7 @@
           </v-app-bar>
           <v-container fluid>
             <v-layout row wrap>
-              <number-cards></number-cards>
+              <covid-numbers-cards></covid-numbers-cards>
               <leaflet-map></leaflet-map>
               <data-table></data-table>
             </v-layout>
@@ -17,7 +17,7 @@
 
 <script>
 import leafletMap from './components/LeafletMap';
-import numberCards from './components/NumberCards';
+import covidNumbersCards from './components/CovidNumbersCards';
 import dataTable from './components/DataTable';
 import { mapActions } from 'vuex'
 
@@ -30,7 +30,7 @@ export default {
   },
   components: {
     leafletMap,
-    numberCards,
+    covidNumbersCards,
     dataTable
   },
   methods: {
