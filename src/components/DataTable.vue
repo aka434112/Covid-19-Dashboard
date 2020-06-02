@@ -27,15 +27,24 @@
 
 <script>
 import { mapState } from 'vuex';
+import covidInfoClient from '../rest/CovidInfoClient';
 
 export default {
   data () {
     return {
-      districtWiseMetrics: []
+      districtWiseMetrics: [],
+      distictWiseData: []
+    }
+  },
+  methods: {
+    fetchDistrictWiseData: async function () {
+      const vm = this;
+      const distictWiseData = await covidInfoClient.fetchDistrictWiseData();
+      vm.distictWiseData = distictWiseData.data;
     }
   },
   computed: {
-    ...mapState(['selectedState', 'distictWiseData'])
+    ...mapState(['selectedState'])
   },
   watch: {
     selectedState (newSelectedState) {
@@ -47,6 +56,10 @@ export default {
         }
       }
     }
+  },
+  created () {
+    const vm = this;
+    vm.fetchDistrictWiseData();
   }
 }
 </script>

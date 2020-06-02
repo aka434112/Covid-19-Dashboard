@@ -19,7 +19,6 @@
 import leafletMap from './components/LeafletMap';
 import covidNumbersCards from './components/CovidNumbersCards';
 import dataTable from './components/DataTable';
-import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -32,13 +31,6 @@ export default {
     leafletMap,
     covidNumbersCards,
     dataTable
-  },
-  methods: {
-    ...mapActions(['FETCH_DISTRICT_WISE_DATA', 'FETCH_DISTRICT_WISE_DATA_VERSION_TWO'])
-  },
-  created () {
-    const vm = this;
-    vm.FETCH_DISTRICT_WISE_DATA();
   }
 };
 </script>

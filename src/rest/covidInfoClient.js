@@ -10,5 +10,6 @@ const covidInfoClient = axios.create({
 
 export default {
   fetchDistrictWiseData: () => covidInfoClient.get('/v2/state_district_wise.json'),
-  fetchStateWiseData: () => covidInfoClient.get('/data.json')
+  fetchStateWiseData: () => covidInfoClient.get('/data.json'),
+  fetchDistrictStatus: () => covidInfoClient.get('/zones.json')
 }

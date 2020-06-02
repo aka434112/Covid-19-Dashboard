@@ -16,8 +16,10 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import CovidNumbersCard from '../models/CovidNumbersCard'
+import { mapState } from 'vuex';
+import CovidNumbersCard from '../models/CovidNumbersCard';
+import covidInfoClient from '../rest/CovidInfoClient';
+import StateMetrics from '../models/StateMetrics';
 
   const ACTIVE_CASES_TITLE = 'Active Cases';
   const CONFIRMED_CASES_TITLE = 'Confirmed Cases';
@@ -32,13 +34,13 @@ import CovidNumbersCard from '../models/CovidNumbersCard'
     name: 'CovidNumbersCards',
     data: () => ({
       stateMetrics: [],
-      selectedStateHeader: null
+      selectedStateHeader: null,
+      stateWiseData: []
     }),
     computed: {
-      ...mapState(['selectedState', 'stateWiseData'])
+      ...mapState(['selectedState'])
     },
     methods: {
-      ...mapActions(['FETCH_STATE_WISE_DATA']),
       updateSelectedStateMetrics (state) {
         const vm = this;
         const stateMetrics = state;
@@ -48,6 +50,13 @@ import CovidNumbersCard from '../models/CovidNumbersCard'
         vm.stateMetrics.push(new CovidNumbersCard(ACTIVE_CASES_TITLE, WARNING_ALERT_TYPE, stateMetrics.activeCases()));
         vm.stateMetrics.push(new CovidNumbersCard(RECOVERED_CASES_TITLE, SUCCESS_ALERT_TYPE, stateMetrics.recoveredCases(), stateMetrics.recoveredCasesDelta()));
         vm.stateMetrics.push(new CovidNumbersCard(DECEASED_CASES_TITLE, INFO_ALERT_TYPE, stateMetrics.deceasedCases(), stateMetrics.deceasedCasesDelta()));
+      },
+      fetchStateWiseData: async function () {
+        const vm = this;
+        let stateWiseData = await covidInfoClient.fetchStateWiseData();
+        stateWiseData = stateWiseData.data.statewise;
+        stateWiseData = stateWiseData.map(state => new StateMetrics(state));
+        vm.stateWiseData = stateWiseData;
       }
     },
     watch: {
@@ -56,7 +65,7 @@ import CovidNumbersCard from '../models/CovidNumbersCard'
         handler: async function (newSelectedState) {
           const vm = this;
           if (!newSelectedState) {
-            await vm.FETCH_STATE_WISE_DATA();
+            await vm.fetchStateWiseData();
             const stateWiseData = vm.stateWiseData;
             vm.updateSelectedStateMetrics(stateWiseData[0]);
           } else {

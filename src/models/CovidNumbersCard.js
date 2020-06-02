@@ -10,15 +10,31 @@ export default class CovidNumbersCard {
     return this.title;
   }
 
+  setTitle (title) {
+    this.title = title;
+  }
+
   getCount () {
     return this.count;
+  }
+
+  setCount (count) {
+    this.count = count;
   }
 
   getDeltaCount () {
     return this.deltaCount;
   }
 
+  setDeltaCount (deltaCount) {
+    this.deltaCount = deltaCount;
+  }
+
   getCardType () {
     return this.type;
+  }
+
+  setCardType (cardType) {
+    this.cardType = cardType;
   }
 }
