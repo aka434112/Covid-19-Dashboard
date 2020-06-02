@@ -1,6 +1,6 @@
 # Covid-19 Dashboard
 
-> The dashboard depicts the number of cases across various states within India
+> The dashboard depicts the number of Covid-19 cases across various states within India
 
 ## Build Setup
 
@@ -17,6 +17,6 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-![alt text](https://github.com/aka434112/covid-19-dashboard/raw/master/screenshots/Screenshot%20(1).png)
-![alt text](https://github.com/aka434112/covid-19-dashboard/raw/master/screenshots/Screenshot%20(2).png)
-![alt text](https://github.com/aka434112/covid-19-dashboard/raw/master/screenshots/Screenshot%20(3).png)
+![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-1.PNG)
+![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-2.PNG)
+![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-2.PNG)
