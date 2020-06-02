@@ -1,6 +1,6 @@
 # Covid-19 Dashboard
 
-> The dashboard depicts the number of Covid-19 cases across various states within India
+> The dashboard depicts the number of Covid-19 cases across various states in India
 
 ## Build Setup
 
