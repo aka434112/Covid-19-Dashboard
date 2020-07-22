@@ -19,4 +19,4 @@ npm run build --report
 ```
 ![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-1.PNG)
 ![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-2.PNG)
-![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-2.PNG)
+![alt text](https://github.com/aka434112/Covid-19-Dashboard/raw/master/screenshots/screenshot-3.PNG)
