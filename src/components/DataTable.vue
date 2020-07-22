@@ -6,20 +6,20 @@
         label="District">
       </el-table-column>
       <el-table-column
-        property="confirmed"
         label="Confirmed Cases">
+        <template v-slot="{ row }"><span class="el-step__title">{{row.confirmed}}</span> <span class="delta-count el-step__description is-error" v-if="row.delta.confirmed">(+{{row.delta.confirmed}})</span></template>
       </el-table-column>
       <el-table-column
-        property="active"
         label="Active Cases">
+        <template v-slot="{ row }"><span class="el-step__title">{{row.active}}</span></template>
       </el-table-column>
       <el-table-column
-        property="recovered"
         label="Recovered Cases">
+        <template v-slot="{ row }"><span class="el-step__title">{{row.recovered}}</span> <span class="delta-count el-step__description is-success" v-if="row.delta.recovered">(+{{row.delta.recovered}})</span></template>
       </el-table-column>
       <el-table-column
-        property="deceased"
         label="Deceased Cases">
+        <template v-slot="{ row }"><span class="el-step__title">{{row.deceased}}</span> <span class="delta-count el-step__description is-wait" v-if="row.delta.deceased">(+{{row.delta.deceased}})</span></template>
       </el-table-column>
     </el-table>
   </v-flex>
@@ -39,8 +39,9 @@ export default {
   methods: {
     fetchDistrictWiseData: async function () {
       const vm = this;
-      const distictWiseData = await covidInfoClient.fetchDistrictWiseData();
-      vm.distictWiseData = distictWiseData.data;
+      vm.distictWiseData = await covidInfoClient.fetchDistrictWiseData();
+      // let districtWiseStatus = await covidInfoClient.fetchDistrictStatus();
+      // districtWiseStatus = districtWiseStatus.zones;
     }
   },
   computed: {
@@ -65,5 +66,7 @@ export default {
 </script>
 
 <style scoped>
-
+.el-step__description {
+  font-weight: 600;
+}
 </style>
